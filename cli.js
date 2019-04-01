@@ -12,7 +12,7 @@ function formatAsTf (records) {
   for (let recordDetails of records) {
     const tfDetails = {
       'domain': recordDetails.zone_name,
-      'name': recordDetails.name,
+      'name': recordDetails.name.replace(new RegExp(`.${recordDetails.zone_name}$$`), ''),
       'type': recordDetails.type,
       'value': recordDetails.content,
       'ttl': recordDetails.ttl,

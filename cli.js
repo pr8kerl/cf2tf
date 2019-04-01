@@ -12,21 +12,14 @@ function formatAsTf (records) {
   for (let recordDetails of records) {
     const tfDetails = {
       'domain': recordDetails.zone_name,
-      'value': recordDetails.content,
+      'name': recordDetails.name,
       'type': recordDetails.type,
+      'value': recordDetails.content,
+      'ttl': recordDetails.ttl,
       'proxied': recordDetails.proxied
-    }
-
-    if (recordDetails.name === recordDetails.zone_name) {
-      tfDetails['name'] = '@'
-    } else {
-      tfDetails['name'] = recordDetails.name.replace(new RegExp(`.${recordDetails.zone_name}$$`), '')
     }
     if (recordDetails.hasOwnProperty('priority')) {
       tfDetails['priority'] = recordDetails.priority
-    }
-    if (recordDetails.ttl !== 1) { // Cloudflare API returns ttl of 1 when set to automatic ttl
-      tfDetails['ttl'] = recordDetails.ttl
     }
     output['resource']['cloudflare_record'][getResourceName(recordDetails)] = tfDetails
   }

@@ -15,10 +15,8 @@ function formatAsTf (records) {
       'name': recordDetails.name.replace(new RegExp(`.${recordDetails.zone_name}$$`), ''),
       'type': recordDetails.type,
       'value': recordDetails.content,
-      'ttl': recordDetails.ttl
-    }
-    if (recordDetails.proxied === 'true') {
-      tfDetails['proxied'] = recordDetails.proxied
+      'ttl': recordDetails.ttl,
+      'proxied': recordDetails.proxied
     }
     if (recordDetails.hasOwnProperty('priority')) {
       tfDetails['priority'] = recordDetails.priority

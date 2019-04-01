@@ -1,5 +1,5 @@
 function getResourceName (recordDetails) {
-  return `${recordDetails.name.replace(new RegExp('\\.', 'g'), '_')}_${recordDetails.type}_${recordDetails.id}`
+  return `${recordDetails.name.replace(new RegExp('\\.', 'g'), '-')}-${recordDetails.type}-${recordDetails.content.replace(new RegExp('\\.', 'g'), '-')}`
 }
 
 function formatAsTf (records) {
